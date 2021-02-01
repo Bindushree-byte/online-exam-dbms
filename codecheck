@@ -1,0 +1,43 @@
+CREATE TRIGGER `log_deleteQuestion` BEFORE DELETE ON `question`
+ FOR EACH ROW 
+	INSERT INTO log (Lname, Laction, Ltime) VALUES (OLD.que_desc,"Question Deleted", NOW());
+
+
+CREATE TRIGGER `log_deleteSubject` BEFORE DELETE ON `subject`
+ FOR EACH ROW 
+	INSERT INTO log (Lname, Laction, Ltime) VALUES (OLD.sub_name,"Subject Deleted", NOW());
+
+
+CREATE TRIGGER `log_deleteTest` BEFORE DELETE ON `test`
+ FOR EACH ROW 
+	INSERT INTO log (Lname, Laction, Ltime) VALUES (OLD.test_name,"Test Deleted", NOW());
+
+
+CREATE TRIGGER `log_updateQuestion` BEFORE UPDATE ON `question`
+ FOR EACH ROW 
+	INSERT INTO log (Lname, Laction, Ltime) VALUES (OLD.que_desc,"Question Updated", NOW());
+
+
+CREATE TRIGGER `log_updateSubject` BEFORE UPDATE ON `subject`
+ FOR EACH ROW 
+	INSERT INTO log (Lname, Laction, Ltime) VALUES (OLD.sub_name,"Subject Updated", NOW());
+
+
+CREATE TRIGGER `log_updateTest` BEFORE UPDATE ON `test`
+ FOR EACH ROW 
+	INSERT INTO log (Lname, Laction, Ltime) VALUES (OLD.test_name,"Test Updated", NOW());
+
+
+CREATE TRIGGER `log_insertQuestion` AFTER INSERT ON `question`
+ FOR EACH ROW 
+	INSERT INTO log (Lname, Laction, Ltime) VALUES (NEW.que_desc,"Question Added", NOW());
+
+
+CREATE TRIGGER `log_insertSubject` AFTER INSERT ON `subject`
+ FOR EACH ROW 
+	INSERT INTO log (Lname, Laction, Ltime) VALUES (NEW.sub_name,"Subject Added", NOW());
+
+
+CREATE TRIGGER `log_insertTest` AFTER INSERT ON `test`
+ FOR EACH ROW 
+	INSERT INTO log (Lname, Laction, Ltime) VALUES (NEW.test_name,"Test Added", NOW());
